@@ -3,6 +3,9 @@ package wiki.adapter.spring.boot.swagger;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Map;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ import wiki.adapter.spring.boot.swagger.output.FilesUtility;
 public class Swagger2MarkupTest {
 
 protected static final String OUTPUT_DIR_PATH = "target/docs/swagger/";
+protected static final String OUTPUT_DIR_PATH2 = "../../../logic/swagger/";
    
 	@Autowired
 	protected MockMvc mockMvc;
@@ -39,8 +43,9 @@ protected static final String OUTPUT_DIR_PATH = "target/docs/swagger/";
 		FilesUtility  filesUtility = new FilesUtility();
 		AsciiUtility asciiUtility = new AsciiUtility(filesUtility, docFilesPaths);
 		asciiUtility.create(OUTPUT_DIR_PATH, swaggerJson);
+		filesUtility.copyFilesToDir(OUTPUT_DIR_PATH, OUTPUT_DIR_PATH2);
 	}
-   
+	
 	protected String getSwaggerJson() throws Exception{
 		MvcResult mvcResult = this.mockMvc.perform(get("/v2/api-docs")
                .accept(MediaType.APPLICATION_JSON))
@@ -49,5 +54,5 @@ protected static final String OUTPUT_DIR_PATH = "target/docs/swagger/";
 		MockHttpServletResponse response = mvcResult.getResponse();
 		String swaggerJson = response.getContentAsString();
 		return swaggerJson;
-	}
+	}	
 }
