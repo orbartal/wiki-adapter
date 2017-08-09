@@ -1,0 +1,2 @@
+This folder will contain all the clients that use (make calls to) the wiki adapter api.
+The api is baesed on Rest. And therefore it can be accessable using a variety of programming languages and tools.
