@@ -25,7 +25,7 @@ public interface CrudControllerI <T> {
 	@ApiOperation(value = "crud: create new entitiy")
 	@RequestMapping(method=RequestMethod.POST)
 	public T create (
-						@ApiParam(value = "The entity data", required = true) @RequestBody T newT
+					@ApiParam(value = "The entity data", required = true) @RequestBody T newT
 					) throws Exception;
 	
 	@ApiOperation(value = "crud: update existing entitiy by id")
