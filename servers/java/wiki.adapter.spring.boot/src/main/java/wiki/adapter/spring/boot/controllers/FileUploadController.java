@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/Files")
@@ -16,6 +17,7 @@ import io.swagger.annotations.Api;
 @Controller
 public class FileUploadController {
 
+	@ApiOperation(value = "Upload an example file", notes = "Upload to server an example file")
     @RequestMapping(value = "/upload", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE }, method = RequestMethod.POST)
     public void uploadFile(@RequestPart String description, @RequestPart MultipartFile file) {
     }

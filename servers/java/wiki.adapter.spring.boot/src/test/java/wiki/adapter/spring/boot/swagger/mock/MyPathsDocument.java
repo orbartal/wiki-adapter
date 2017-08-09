@@ -59,7 +59,6 @@ public class MyPathsDocument extends PathsDocument {
     private final String CURL_EXAMPLE_FILE_NAME;
     private final String DESCRIPTION_FILE_NAME;
     private final String PARAMETER;
-
     private boolean examplesEnabled;
     private String examplesFolderPath;
     private boolean handWrittenDescriptionsEnabled;
@@ -510,5 +509,4 @@ public class MyPathsDocument extends PathsDocument {
             this.markupDocBuilder.tableWithHeaderRow(csvContent);
         }
     }
-
 }

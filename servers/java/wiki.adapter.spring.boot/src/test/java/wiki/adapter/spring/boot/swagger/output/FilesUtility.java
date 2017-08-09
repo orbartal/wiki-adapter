@@ -43,7 +43,6 @@ public class FilesUtility {
 	}
 
 	public void copyFilesToDir(String strSource, String strTarget) throws IOException {
-		//TODO: validate
 		File fDirSource = new File (strSource);
 		File fDirTarget = new File (strTarget);
 		FileUtils.copyDirectory(fDirSource, fDirTarget);

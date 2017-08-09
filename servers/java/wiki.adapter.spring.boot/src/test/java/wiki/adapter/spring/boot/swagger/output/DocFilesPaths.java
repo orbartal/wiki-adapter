@@ -17,6 +17,17 @@ public class DocFilesPaths {
 	public static final String OUTPUT_FILE_NAME_ASCII = OUTPUT_FILE_NAME + ".adoc";
 	public static final String OUTPUT_FILE_NAME_PDF = OUTPUT_FILE_NAME + ".pdf";
 	public static final String OUTPUT_FILE_NAME_HTML = OUTPUT_FILE_NAME + ".html";
+	
+	protected static final String OUTPUT_DIR_PATH = "target/docs/swagger/";
+	protected static final String OUTPUT_DIR_PATH2 = "../../../logic/swagger/";
+	
+	public String getOutPutDirTemp() {
+		return OUTPUT_DIR_PATH;
+	}
+	
+	public String getOutPutDirFinal() {
+		return OUTPUT_DIR_PATH2;
+	}
 
 	public String getNameOfPDF() {
 		return OUTPUT_FILE_NAME_PDF;
@@ -38,5 +49,4 @@ public class DocFilesPaths {
 		return map;
 	}
 
-	
 }
