@@ -7,11 +7,11 @@ public interface CrudControllerI <T> extends RestControllerI {
 	
 	public Page<T> get (Pageable pageable) throws Exception;
 	
-	public T get (Long id) throws Exception;
+	public T get (String id) throws Exception;
 	
-	public T create (T newT) throws Exception;
+	public T create (T data) throws Exception;
 	
-	public T update (Long id, T newT) throws Exception;
+	public T update (String id, T data) throws Exception;
 	
-	public void delete (Long id) throws Exception;
+	public void delete (String id) throws Exception;
 }
