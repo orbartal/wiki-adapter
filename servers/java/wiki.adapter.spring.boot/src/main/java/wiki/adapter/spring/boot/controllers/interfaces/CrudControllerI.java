@@ -1,10 +1,11 @@
 package wiki.adapter.spring.boot.controllers.interfaces;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-public interface CrudControllerI <T> {
+public interface CrudControllerI <T> extends RestControllerI {
 	
-	public List<T> get () throws Exception;
+	public Page<T> get (Pageable pageable) throws Exception;
 	
 	public T get (Long id) throws Exception;
 	

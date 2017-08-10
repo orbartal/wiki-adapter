@@ -1,6 +1,7 @@
 package wiki.adapter.spring.boot.controllers.classes;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +12,9 @@ import wiki.adapter.spring.boot.controllers.interfaces.CrudControllerI;
 
 public abstract class AbstractCrudControllerC <T> implements CrudControllerI<T> {
 
-	@ApiOperation(value = "crud: get all")
+	@ApiOperation(value = "crud: get entities by page")
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public List<T> get() throws Exception {
+	public Page<T> get(Pageable pageable) throws Exception {
 		return null;
 	}
 
