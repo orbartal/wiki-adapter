@@ -28,7 +28,7 @@ public abstract class AbstractCrudControllerC <T> implements CrudControllerI<T> 
 	@ApiOperation(value = "crud: create new entitiy")
 	@RequestMapping(method=RequestMethod.POST)
 	public T create(
-				@ApiParam(value = "The entity data", required = true) @RequestBody T newT
+				@ApiParam(value = "The entity data", required = true) @RequestBody T data
 			) throws Exception {
 		return null;
 	}
@@ -37,7 +37,7 @@ public abstract class AbstractCrudControllerC <T> implements CrudControllerI<T> 
 	@RequestMapping(method=RequestMethod.PUT)
 	public T update (
 				@ApiParam(value = "The entity id", required = true) @PathVariable Long id, 
-				@ApiParam(value = "The entity data", required = true) @RequestBody T newT
+				@ApiParam(value = "The entity data", required = true) @RequestBody T data
 			) throws Exception {
 		return null;
 	}

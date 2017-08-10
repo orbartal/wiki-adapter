@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -125,39 +126,50 @@ public class MyPathsDocument extends PathsDocument {
      */
     private void paths2(){
         Map<String, Path> paths = swagger.getPaths();
-        if(MapUtils.isNotEmpty(paths)) {
-            if(pathsGroupedBy.equals(GroupBy.AS_IS)){
-                this.markupDocBuilder.sectionTitleLevel1(PATHS);
-                for (Map.Entry<String, Path> pathEntry : paths.entrySet()) {
-                    Path path = pathEntry.getValue();
-                    if(path != null) {
-                        createPathSections2(pathEntry.getKey(), path);
-                    }
-                }
-            }else{
-                this.markupDocBuilder.sectionTitleLevel1(RESOURCES);
-                Multimap<String, Pair<String, Path>> pathsGroupedByTag = groupPathsByTag(paths);
-                Map<String, Tag> tagsMap = convertTagsListToMap(swagger.getTags());
-                for(String tagName : pathsGroupedByTag.keySet()){
-                    this.markupDocBuilder.sectionTitleLevel2(WordUtils.capitalize(tagName));
-                    Optional<String> tagDescription = getTagDescription(tagsMap, tagName);
-                    if(tagDescription.isPresent()) {
-                        this.markupDocBuilder.paragraph(tagDescription.get());
-                    }
-                    Collection<Pair<String, Path>> pathsOfTag = pathsGroupedByTag.get(tagName);
-                    for(Pair<String, Path> pathPair : pathsOfTag){
-                        Path path = pathPair.getValue();
-                        if(path != null) {
-                            createPathSections2(pathPair.getKey(), path);
-                        }
-                    }
-                }
-            }
+        if(MapUtils.isEmpty(paths)) {
+           return;
+        }
+        if(pathsGroupedBy.equals(GroupBy.AS_IS)){
+        	paths2AsIs(paths);
+        }else{
+        	paths2Tags(paths);
         }
     }
 
-    private void createPathSections2(String pathUrl, Path path){
-        for(Map.Entry<HttpMethod, Operation> operationEntry : path.getOperationMap().entrySet()){
+    private void paths2Tags(Map<String, Path> paths) {
+    	this.markupDocBuilder.sectionTitleLevel1(RESOURCES);
+        Multimap<String, Pair<String, Path>> pathsGroupedByTag = groupPathsByTag(paths);
+        Map<String, Tag> tagsMap = convertTagsListToMap(swagger.getTags());
+        for(String tagName : pathsGroupedByTag.keySet()){
+            this.markupDocBuilder.sectionTitleLevel2(WordUtils.capitalize(tagName));
+            Optional<String> tagDescription = getTagDescription(tagsMap, tagName);
+            if(tagDescription.isPresent()) {
+                this.markupDocBuilder.paragraph(tagDescription.get());
+            }
+            Collection<Pair<String, Path>> pathsOfTag = pathsGroupedByTag.get(tagName);
+            for(Pair<String, Path> pathPair : pathsOfTag){
+                Path path = pathPair.getValue();
+                if(path != null) {
+                    createPathSections2(pathPair.getKey(), path);
+                }
+            }
+        }
+	}
+
+	private void paths2AsIs(Map<String, Path> mapPaths) {
+    	 this.markupDocBuilder.sectionTitleLevel1(PATHS);
+         for (Map.Entry<String, Path> pathEntry : mapPaths.entrySet()) {
+             Path path = pathEntry.getValue();
+             if(path != null) {
+                 createPathSections2(pathEntry.getKey(), path);
+             }
+         }
+	}
+
+	private void createPathSections2(String pathUrl, Path path){
+		Map<HttpMethod, Operation> sortedMap = new TreeMap<HttpMethod, Operation>(new HttpMethodComparator());
+		sortedMap.putAll(path.getOperationMap());
+        for(Map.Entry<HttpMethod, Operation> operationEntry : sortedMap.entrySet()){
             String methodAndPath = operationEntry.getKey() + " " + pathUrl;
             path2(methodAndPath, operationEntry.getValue());
         }
@@ -175,9 +187,9 @@ public class MyPathsDocument extends PathsDocument {
             descriptionSection(operation);
             parametersSection2(operation);
             responsesSection(operation);
-            consumesSection(operation);
-            producesSection(operation);
-            tagsSection(operation);
+            //consumesSection(operation);
+            //producesSection(operation);
+            //tagsSection(operation);
             examplesSection(operation);
         }
     }
