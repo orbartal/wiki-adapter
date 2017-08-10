@@ -9,6 +9,6 @@ import wiki.adapter.spring.boot.model.interfaces.UserREI;
 
 @RestController
 @RequestMapping(UserControllerI.URL_REST_API+"/"+UserControllerI.LAST_API_VERSION+"/"+ 
-		WikiControllerI.Entities_NAME + "/{parentID}/"+ UserControllerI.Entities_NAME)
+		WikiControllerI.Entities_NAME + "/{parentId}/"+ UserControllerI.Entities_NAME)
 @Api(value = UserControllerI.Entities_NAME, description = "Rest for wiki users")
 public class UserControllerC extends AbstractCrudController2C <UserREI> implements UserControllerI {}
