@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.embedded.EmbeddedWebApplicationContext;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -19,7 +20,7 @@ import wiki.adapter.spring.boot.swagger.output.DocFilesPaths;
 import wiki.adapter.spring.boot.swagger.output.FilesUtility;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes={WikiAdapterMain.class, SpringSwaggerConfig.class})
+@SpringBootTest(classes={WikiAdapterMain.class, SpringSwaggerConfig.class, EmbeddedWebApplicationContext.class})
 @AutoConfigureMockMvc
 public class Swagger2MarkupTest {
 
