@@ -6,7 +6,6 @@ import static io.github.robwin.swagger2markup.utils.TagUtils.groupPathsByTag;
 import static org.apache.commons.lang3.StringUtils.defaultString;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.join;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -18,17 +17,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.text.WordUtils;
 import org.apache.commons.lang3.tuple.Pair;
-
 import com.google.common.base.Optional;
 import com.google.common.collect.Multimap;
-
 import io.github.robwin.swagger2markup.GroupBy;
 import io.github.robwin.swagger2markup.builder.document.MarkupDocument;
 import io.github.robwin.swagger2markup.builder.document.PathsDocument;
@@ -346,41 +342,6 @@ public class MyPathsDocument extends PathsDocument {
             }
         }else {
             return defaultString(parameter.getDescription());
-        }
-    }
-
-    private void consumesSection(Operation operation) {
-        List<String> consumes = operation.getConsumes();
-        if(CollectionUtils.isNotEmpty(consumes)){
-            if(pathsGroupedBy.equals(GroupBy.AS_IS)){
-                this.markupDocBuilder.sectionTitleLevel3(CONSUMES);
-            }else{
-                this.markupDocBuilder.sectionTitleLevel4(CONSUMES);
-            }
-            this.markupDocBuilder.unorderedList(consumes);
-        }
-
-    }
-
-    private void producesSection(Operation operation) {
-        List<String> produces = operation.getProduces();
-        if(CollectionUtils.isNotEmpty(produces)){
-            if(pathsGroupedBy.equals(GroupBy.AS_IS)){
-                this.markupDocBuilder.sectionTitleLevel3(PRODUCES);
-            }else{
-                this.markupDocBuilder.sectionTitleLevel4(PRODUCES);
-            }
-            this.markupDocBuilder.unorderedList(produces);
-        }
-    }
-
-    private void tagsSection(Operation operation) {
-        if(pathsGroupedBy.equals(GroupBy.AS_IS)) {
-            List<String> tags = operation.getTags();
-            if (CollectionUtils.isNotEmpty(tags)) {
-                this.markupDocBuilder.sectionTitleLevel3(TAGS);
-                this.markupDocBuilder.unorderedList(tags);
-            }
         }
     }
 
