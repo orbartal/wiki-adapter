@@ -1,5 +1,5 @@
 package wiki.adapter.spring.boot.model.classes;
 
-import wiki.adapter.spring.boot.model.interfaces.ArticleREI;
+import wiki.adapter.spring.boot.model.interfaces.FileREI;
 
-public class ArticleREC extends AbstractREC implements ArticleREI {}
+public class ArticleREC extends AbstractREC implements FileREI {}
