@@ -49,15 +49,15 @@ public class MySwagger2MarkupConverter  {
 			m_overviewDoc.build();
 			m_overviewDoc.writeToFile(directory, OVERVIEW_DOCUMENT, StandardCharsets.UTF_8);
 			
-			//PathsDocument: MyPathsDocument
-			m_pathsDoc =  new MyPathsDocument(m_config);
-			m_pathsDoc.build();
-			m_pathsDoc.writeToFile(directory, PATHS_DOCUMENT, StandardCharsets.UTF_8);
-			
 			//DefinitionsDocument
 			m_definitionsDoc = new DefinitionsDocument(m_config, directory);
 			m_definitionsDoc.build();
 			m_definitionsDoc.writeToFile(directory, DEFINITIONS_DOCUMENT, StandardCharsets.UTF_8);
+			
+			//PathsDocument: MyPathsDocument
+			m_pathsDoc =  new MyPathsDocument(m_config);
+			m_pathsDoc.build();
+			m_pathsDoc.writeToFile(directory, PATHS_DOCUMENT, StandardCharsets.UTF_8);
 	 }
 
 }

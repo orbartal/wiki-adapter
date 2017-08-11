@@ -25,13 +25,13 @@ public class FilesUtility {
 		 StringBuilder sb = new StringBuilder();
 		 File outputFile = new File(dir, strOut);
 		 FileFilter typeFilter = new WildcardFileFilter(type);
-       List<File> lstAdocFiles = Arrays.asList(dir.listFiles(typeFilter));
-       for (File inputFile : lstAdocFiles){
-      	 String strContents = FileUtils.readFileToString(inputFile);
-      	 sb.append(strContents+"\n");
-       }
-       FileUtils.writeStringToFile(outputFile, sb.toString(), Charsets.UTF_8);
-       return outputFile;
+		 List<File> lstAdocFiles = Arrays.asList(dir.listFiles(typeFilter));
+		 for (File inputFile : lstAdocFiles){
+			 String strContents = FileUtils.readFileToString(inputFile);
+			 sb.append(strContents+"\n<<<\n");
+		 }
+		 FileUtils.writeStringToFile(outputFile, sb.toString(), Charsets.UTF_8);
+		 return outputFile;
 	}
 	
 	public void renameFiles(File dir, Map <String, String> map) throws IOException {
