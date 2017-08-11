@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import wiki.adapter.spring.boot.controllers.interfaces.CrudControllerI;
+import wiki.adapter.spring.boot.controllers.interfaces.CrudController1I;
 
-public abstract class AbstractCrudControllerC <T> implements CrudControllerI<T> {
+public abstract class AbstractCrudController1C <T> implements CrudController1I<T> {
 
 	@ApiOperation(value = "crud: get entities by page")
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")

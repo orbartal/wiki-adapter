@@ -3,7 +3,7 @@ package wiki.adapter.spring.boot.controllers.interfaces;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface CrudController3I <T> extends RestControllerI {
+public interface CrudController3I <T> extends RestControllerI  {
 	
 	public Page<T> get (String parent1, String parent2, Pageable pageable) throws Exception;
 	

@@ -13,7 +13,7 @@ import wiki.adapter.spring.boot.model.interfaces.WikiREI;
 @RestController
 @RequestMapping(WikiControllerI.URL_REST_API+"/"+WikiControllerI.LAST_API_VERSION+"/"+WikiControllerI.Entities_NAME)
 @Api(value = WikiControllerI.Entities_NAME, description = "Rest for wikis (a wiki can contain sub wikis)")
-public class WikiControllerC extends AbstractCrudControllerC <WikiREI> implements WikiControllerI {
+public class WikiControllerC extends AbstractCrudController1C <WikiREI> implements WikiControllerI {
 	
 	@ApiOperation(value = "get sub wikis of a wiki")
 	@RequestMapping(method = RequestMethod.GET, value ="/{entityId}"+WikiControllerI.Entities_NAME, produces = "application/json")
