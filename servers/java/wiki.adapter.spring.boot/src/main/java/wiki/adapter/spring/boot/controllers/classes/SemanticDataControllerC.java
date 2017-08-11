@@ -29,4 +29,5 @@ public class SemanticDataControllerC implements SemanticDataControllerI {
 	public void edit (
 			@ApiParam(value = "The wiki id", required = true) @PathVariable("wikiId") String wikiId, 
 			@ApiParam(value = "The new semantic data", required = true) @RequestBody List<Map<String, Object>> data) throws Exception {		
-	}}
+	}
+}
