@@ -9,17 +9,15 @@ import wiki.adapter.spring.boot.controllers.interfaces.WikiControllerI;
 import wiki.adapter.spring.boot.controllers.interfaces.SpaceControllerI;
 import wiki.adapter.spring.boot.controllers.interfaces.FileInfoControllerI;
 import wiki.adapter.spring.boot.controllers.interfaces.FileInfoVersionControllerI;
-import wiki.adapter.spring.boot.controllers.classes.AbstractCrudController4C;
-
 
 @RestController
 @RequestMapping(FileInfoVersionControllerI.URL_REST_API+"/"+FileInfoVersionControllerI.LAST_API_VERSION+"/"+ 
-		WikiControllerI.Entities_NAME + "/{parentId3}/"+ 
-		SpaceControllerI.Entities_NAME + "/{parentId2}/"+
-		FileInfoControllerI.Entities_NAME + "/{parentId}/"+
+		WikiControllerI.Entities_NAME + "/{wikiId}/"+ 
+		SpaceControllerI.Entities_NAME + "/{spaceId}/"+
+		FileInfoControllerI.Entities_NAME + "/{wikiId}/"+
 		FileInfoVersionControllerI.Entities_NAME)
 @Api(value = UserRoleControllerI.Entities_NAME, description = "Rest for wiki Files (e.g. images, attachments, docs ..)")
 public class FileInfoVersionControllerC 
-	extends AbstractCrudController4C <FileInfoVersionREI> 
+	extends AbstractVersionControllerC <FileInfoVersionREI> 
 	implements FileInfoVersionControllerI 
 {}

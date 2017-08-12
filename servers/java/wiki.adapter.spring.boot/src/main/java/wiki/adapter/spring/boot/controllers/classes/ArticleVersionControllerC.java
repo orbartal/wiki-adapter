@@ -9,17 +9,17 @@ import wiki.adapter.spring.boot.controllers.interfaces.WikiControllerI;
 import wiki.adapter.spring.boot.controllers.interfaces.SpaceControllerI;
 import wiki.adapter.spring.boot.controllers.interfaces.ArticleControllerI;
 import wiki.adapter.spring.boot.controllers.interfaces.ArticleVersionControllerI;
-import wiki.adapter.spring.boot.controllers.classes.AbstractCrudController4C;
+import wiki.adapter.spring.boot.controllers.classes.AbstractVersionControllerC;
 
 
 @RestController
 @RequestMapping(ArticleVersionControllerI.URL_REST_API+"/"+ArticleVersionControllerI.LAST_API_VERSION+"/"+ 
-		WikiControllerI.Entities_NAME + "/{parentId3}/"+ 
-		SpaceControllerI.Entities_NAME + "/{parentId2}/"+
-		ArticleControllerI.Entities_NAME + "/{parentId}/"+
+		WikiControllerI.Entities_NAME + "/{wikiId}/"+ 
+		SpaceControllerI.Entities_NAME + "/{spaceId}/"+
+		ArticleControllerI.Entities_NAME + "/{articleId}/"+
 		ArticleVersionControllerI.Entities_NAME)
-@Api(value = UserRoleControllerI.Entities_NAME, description = "Rest for wiki Articles (e.g. pages)")
+@Api(value = UserRoleControllerI.Entities_NAME, description = "Rest for wiki Articles (e.g. pages) versions")
 public class ArticleVersionControllerC 
-	extends AbstractCrudController4C <ArticleVersionREI> 
+	extends AbstractVersionControllerC <ArticleVersionREI> 
 	implements ArticleVersionControllerI 
 {}
