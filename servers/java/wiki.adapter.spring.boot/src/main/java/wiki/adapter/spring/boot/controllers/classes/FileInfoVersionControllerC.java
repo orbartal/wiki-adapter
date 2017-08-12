@@ -14,7 +14,7 @@ import wiki.adapter.spring.boot.controllers.interfaces.FileInfoVersionController
 @RequestMapping(FileInfoVersionControllerI.URL_REST_API+"/"+FileInfoVersionControllerI.LAST_API_VERSION+"/"+ 
 		WikiControllerI.Entities_NAME + "/{wikiId}/"+ 
 		SpaceControllerI.Entities_NAME + "/{spaceId}/"+
-		FileInfoControllerI.Entities_NAME + "/{wikiId}/"+
+		FileInfoControllerI.Entities_NAME + "/{entityId}/"+
 		FileInfoVersionControllerI.Entities_NAME)
 @Api(value = UserRoleControllerI.Entities_NAME, description = "Rest for wiki Files (e.g. images, attachments, docs ..)")
 public class FileInfoVersionControllerC 
