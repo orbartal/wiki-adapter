@@ -4,3 +4,4 @@
 *.class
 logs
 target
+/logic/swagger
