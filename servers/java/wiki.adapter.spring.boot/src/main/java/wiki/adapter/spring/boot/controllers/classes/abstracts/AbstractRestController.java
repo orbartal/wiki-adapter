@@ -43,7 +43,7 @@ public class AbstractRestController <T> {
 	}
 	
 	//////////////////
-	public static Map <String, Object> toMap (Object ...args){
+	public Map <String, Object> toMap (Object ...args){
 		Builder<String, Object> builder = ImmutableMap.<String, Object> builder();
 		for (int i=0; i<args.length; i=i+2) {
 			builder.put((String) args[i], args[i+1]);
