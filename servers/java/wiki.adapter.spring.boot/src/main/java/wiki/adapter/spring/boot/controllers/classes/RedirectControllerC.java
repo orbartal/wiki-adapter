@@ -10,8 +10,8 @@ import wiki.adapter.spring.boot.controllers.interfaces.SpaceControllerI;
 
 @RestController
 @RequestMapping(RedirectControllerI.URL_REST_API+"/"+RedirectControllerI.LAST_API_VERSION+"/"+ 
-		WikiControllerI.Entities_NAME + "/{parentId2}/"+ 
-		SpaceControllerI.Entities_NAME + "/{parentId1}/"+
+		WikiControllerI.Entities_NAME + "/{wikiId}/"+ 
+		SpaceControllerI.Entities_NAME + "/{spaceId}/"+
 		RedirectControllerI.Entities_NAME)
 @Api(value = RedirectControllerI.Entities_NAME, description = "Rest for wiki redirect (e.g. article names alias)")
 public class RedirectControllerC 

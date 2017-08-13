@@ -14,9 +14,9 @@ import wiki.adapter.spring.boot.controllers.classes.AbstractCrudController4C;
 
 @RestController
 @RequestMapping(SemanticObjectControllerI.URL_REST_API+"/"+SemanticObjectControllerI.LAST_API_VERSION+"/"+ 
-		WikiControllerI.Entities_NAME + "/{parentId3}/"+ 
-		SpaceControllerI.Entities_NAME + "/{parentId2}/"+
-		ArticleControllerI.Entities_NAME + "/{parentId}/"+
+		WikiControllerI.Entities_NAME + "/{wikiId}/"+ 
+		SpaceControllerI.Entities_NAME + "/{spaceId}/"+
+		ArticleControllerI.Entities_NAME + "/{articleId}/"+
 		SemanticObjectControllerI.Entities_NAME)
 @Api(value = UserRoleControllerI.Entities_NAME, description = "Rest for wiki Articles (e.g. pages)")
 public class SemanticObjectControllerC 

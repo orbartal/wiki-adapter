@@ -15,7 +15,7 @@ import wiki.adapter.spring.boot.controllers.classes.AbstractVersionControllerC;
 @RequestMapping(ArticleVersionControllerI.URL_REST_API+"/"+ArticleVersionControllerI.LAST_API_VERSION+"/"+ 
 		WikiControllerI.Entities_NAME + "/{wikiId}/"+ 
 		SpaceControllerI.Entities_NAME + "/{spaceId}/"+
-		ArticleControllerI.Entities_NAME + "/{entityId}/"+
+		ArticleControllerI.Entities_NAME + "/{id}/"+
 		ArticleVersionControllerI.Entities_NAME)
 @Api(value = ArticleVersionControllerI.Entities_NAME, description = "Rest for wiki Articles (e.g. pages) versions")
 public class ArticleVersionControllerC 

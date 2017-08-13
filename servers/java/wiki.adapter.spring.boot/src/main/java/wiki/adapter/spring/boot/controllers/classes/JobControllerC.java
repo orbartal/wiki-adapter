@@ -9,6 +9,8 @@ import wiki.adapter.spring.boot.controllers.interfaces.WikiControllerI;
 
 @RestController
 @RequestMapping(JobControllerI.URL_REST_API+"/"+JobControllerI.LAST_API_VERSION+"/"+ 
-		WikiControllerI.Entities_NAME + "/{parentId}/"+ JobControllerI.Entities_NAME)
+		WikiControllerI.Entities_NAME + "/{wikiId}/"+ JobControllerI.Entities_NAME)
 @Api(value = JobControllerI.Entities_NAME, description = "Rest for wiki jobs (e.g. tasks)")
-public class JobControllerC extends AbstractCrudController2C <JobREI> implements JobControllerI {}
+public class JobControllerC 
+		extends AbstractCrudController2C <JobREI> 
+		implements JobControllerI {}

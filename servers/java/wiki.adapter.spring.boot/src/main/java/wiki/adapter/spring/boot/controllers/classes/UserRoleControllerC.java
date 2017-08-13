@@ -9,7 +9,7 @@ import wiki.adapter.spring.boot.controllers.interfaces.WikiControllerI;
 
 @RestController
 @RequestMapping(UserRoleControllerI.URL_REST_API+"/"+UserRoleControllerI.LAST_API_VERSION+"/"+ 
-		WikiControllerI.Entities_NAME + "/{parentId}/"+ UserRoleControllerI.Entities_NAME)
+		WikiControllerI.Entities_NAME + "/{wikiId}/"+ UserRoleControllerI.Entities_NAME)
 @Api(value = UserRoleControllerI.Entities_NAME, description = "Rest for wiki users roles (e.g. users group)")
 public class UserRoleControllerC 
 	extends AbstractCrudController2C <UserRoleREI> 

@@ -9,6 +9,8 @@ import wiki.adapter.spring.boot.controllers.interfaces.WikiControllerI;
 
 @RestController
 @RequestMapping(SpaceControllerI.URL_REST_API+"/"+SpaceControllerI.LAST_API_VERSION+"/"+ 
-		WikiControllerI.Entities_NAME + "/{parentId}/"+ SpaceControllerI.Entities_NAME)
+		WikiControllerI.Entities_NAME + "/{wikiId}/"+ SpaceControllerI.Entities_NAME)
 @Api(value = SpaceControllerI.Entities_NAME, description = "Rest for wiki spaces (e.g. name space)")
-public class SpaceControllerC extends AbstractCrudController2C <SpaceREI> implements SpaceControllerI {}
+public class SpaceControllerC 
+		extends AbstractCrudController2C <SpaceREI> 
+		implements SpaceControllerI {}
