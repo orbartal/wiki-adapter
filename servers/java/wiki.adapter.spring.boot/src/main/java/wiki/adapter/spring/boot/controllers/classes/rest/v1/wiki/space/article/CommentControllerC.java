@@ -1,4 +1,4 @@
-package wiki.adapter.spring.boot.controllers.classes;
+package wiki.adapter.spring.boot.controllers.classes.rest.v1.wiki.space.article;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,9 +7,9 @@ import wiki.adapter.spring.boot.controllers.interfaces.UserRoleControllerI;
 import wiki.adapter.spring.boot.model.interfaces.CommentREI;
 import wiki.adapter.spring.boot.controllers.interfaces.WikiControllerI;
 import wiki.adapter.spring.boot.controllers.interfaces.SpaceControllerI;
+import wiki.adapter.spring.boot.controllers.classes.abstracts.AbstractCrudController4C;
 import wiki.adapter.spring.boot.controllers.interfaces.ArticleControllerI;
 import wiki.adapter.spring.boot.controllers.interfaces.CommentControllerI;
-import wiki.adapter.spring.boot.controllers.classes.AbstractCrudController4C;
 
 
 @RestController

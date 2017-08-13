@@ -1,4 +1,4 @@
-package wiki.adapter.spring.boot.controllers.classes;
+package wiki.adapter.spring.boot.controllers.classes.abstracts;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

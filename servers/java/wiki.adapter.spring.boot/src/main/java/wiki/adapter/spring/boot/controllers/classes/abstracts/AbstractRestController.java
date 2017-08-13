@@ -1,4 +1,4 @@
-package wiki.adapter.spring.boot.controllers.classes;
+package wiki.adapter.spring.boot.controllers.classes.abstracts;
 
 import java.util.Map;
 

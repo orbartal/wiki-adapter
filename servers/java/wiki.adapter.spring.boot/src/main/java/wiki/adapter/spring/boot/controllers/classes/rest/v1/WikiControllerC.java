@@ -1,4 +1,4 @@
-package wiki.adapter.spring.boot.controllers.classes;
+package wiki.adapter.spring.boot.controllers.classes.rest.v1;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import wiki.adapter.spring.boot.controllers.classes.abstracts.AbstractRestController;
 import wiki.adapter.spring.boot.controllers.interfaces.WikiControllerI;
 import wiki.adapter.spring.boot.model.interfaces.WikiREI;
 

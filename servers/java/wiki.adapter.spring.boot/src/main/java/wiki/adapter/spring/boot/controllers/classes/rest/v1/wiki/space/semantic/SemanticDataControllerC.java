@@ -1,4 +1,4 @@
-package wiki.adapter.spring.boot.controllers.classes;
+package wiki.adapter.spring.boot.controllers.classes.rest.v1.wiki.space.semantic;
 
 import java.util.List;
 import java.util.Map;

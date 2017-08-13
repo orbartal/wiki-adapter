@@ -1,4 +1,4 @@
-package wiki.adapter.spring.boot.controllers.classes;
+package wiki.adapter.spring.boot.controllers.classes.rest.v1.wiki;
 
 import java.util.List;
 import wiki.adapter.spring.boot.controllers.interfaces.SearchControllerI;

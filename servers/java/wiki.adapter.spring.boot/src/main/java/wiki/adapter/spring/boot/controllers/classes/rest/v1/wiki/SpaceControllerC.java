@@ -1,8 +1,9 @@
-package wiki.adapter.spring.boot.controllers.classes;
+package wiki.adapter.spring.boot.controllers.classes.rest.v1.wiki;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
+import wiki.adapter.spring.boot.controllers.classes.abstracts.AbstractCrudController2C;
 import wiki.adapter.spring.boot.controllers.interfaces.SpaceControllerI;
 import wiki.adapter.spring.boot.model.interfaces.SpaceREI;
 import wiki.adapter.spring.boot.controllers.interfaces.WikiControllerI;

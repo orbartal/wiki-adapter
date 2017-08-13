@@ -1,4 +1,4 @@
-package wiki.adapter.spring.boot.controllers.classes;
+package wiki.adapter.spring.boot.controllers.classes.rest.v1.wiki.space.file;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
