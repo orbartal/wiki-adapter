@@ -1,4 +1,4 @@
-package wiki.adapter.spring.boot.swagger.output;
+package wiki.adapter.spring.boot.utils.classes;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -9,10 +9,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.springframework.stereotype.Component;
+
 import com.google.common.base.Charsets;
 
-public class FilesUtility {
+import wiki.adapter.spring.boot.utils.interfaces.FilesUtilsWikiI;
+
+@Component
+public class FilesUtilsWikiC implements FilesUtilsWikiI {
 	
+	@Override
 	public File createDir (String strFilePath) throws IOException {
 		   String strFullPath =  System.getProperty("user.dir") + "\\" + strFilePath;
 	       File dir = new File (strFullPath);
@@ -21,19 +27,21 @@ public class FilesUtility {
 	       return dir;
 	}
 	
-	protected File mergeFileByType (File dir, String type, String strOut) throws IOException {
+	@Override
+	public File mergeFileByType (File dir, String type, String strOut, String separator) throws IOException {
 		 StringBuilder sb = new StringBuilder();
 		 File outputFile = new File(dir, strOut);
 		 FileFilter typeFilter = new WildcardFileFilter(type);
 		 List<File> lstAdocFiles = Arrays.asList(dir.listFiles(typeFilter));
 		 for (File inputFile : lstAdocFiles){
 			 String strContents = FileUtils.readFileToString(inputFile);
-			 sb.append(strContents+"\n<<<\n");
+			 sb.append(strContents+separator);
 		 }
 		 FileUtils.writeStringToFile(outputFile, sb.toString(), Charsets.UTF_8);
 		 return outputFile;
 	}
 	
+	@Override
 	public void renameFiles(File dir, Map <String, String> map) throws IOException {
 		for (Entry<String, String> pair : map.entrySet()){
 			File oldFile = new File (dir, pair.getKey());
@@ -42,6 +50,7 @@ public class FilesUtility {
 		}
 	}
 
+	@Override
 	public void copyFilesToDir(String strSource, String strTarget) throws IOException {
 		File fDirSource = new File (strSource);
 		File fDirTarget = new File (strTarget);

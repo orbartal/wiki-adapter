@@ -1,33 +1,48 @@
-package wiki.adapter.spring.boot.swagger.output;
+package wiki.adapter.spring.boot.swagger.output.classes;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 import org.asciidoctor.Asciidoctor;
 import org.asciidoctor.Options;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import io.github.robwin.swagger2markup.Swagger2MarkupConverter;
 import io.github.robwin.swagger2markup.Swagger2MarkupConverter.Builder;
 import wiki.adapter.spring.boot.swagger.mock.MySwagger2MarkupConverter;
+import wiki.adapter.spring.boot.swagger.output.interfaces.AsciiUtilsWikiI;
+import wiki.adapter.spring.boot.swagger.output.interfaces.DocumentsWikiPathsI;
+import wiki.adapter.spring.boot.utils.interfaces.FilesUtilsWikiI;
 
-public class AsciiUtility  {
+@Component
+public class AsciiUtilsWikiC implements AsciiUtilsWikiI  {
 	
-	protected DocFilesPaths m_paths = null;
-	protected FilesUtility m_filesUtility = null;
+	protected DocumentsWikiPathsI m_paths = null;
+	protected FilesUtilsWikiI m_FilesUtils = null;
 	
-	public AsciiUtility (FilesUtility filesUtility, DocFilesPaths paths){
+	@Autowired
+	public AsciiUtilsWikiC (FilesUtilsWikiI filesUtility, DocumentsWikiPathsI paths){
 		m_paths = paths;
-		m_filesUtility = filesUtility;
+		m_FilesUtils = filesUtility;
 	}
 	
-	public void create (String strPath, String swaggerJson) throws Exception {
-		create (m_filesUtility.createDir(strPath), swaggerJson); 
+	@Override
+	public void create (String swaggerJson) throws Exception {
+		create (m_FilesUtils.createDir(m_paths.getOutPutDirTemp()), swaggerJson); 
+	}
+	
+	@Override
+	public void create (String strDirPath, String swaggerJson) throws Exception {
+		create (m_FilesUtils.createDir(strDirPath), swaggerJson); 
 	}
 
+	@Override
 	public void create (File dir, String swaggerJson) throws Exception {
 	   jsonToAsciiDocs(dir, swaggerJson);
 	   File asciiDoc = mergeAsciiDocs(dir);
 	   convertAsciiToPdf  (dir, asciiDoc);
 	   convertAsciiToHtml (dir, asciiDoc);
+	   m_FilesUtils.copyFilesToDir(m_paths.getOutPutDirTemp(), m_paths.getOutPutDirFinal());
 	}
 	
 	protected void jsonToAsciiDocs(File dir, String swaggerJson)  throws Exception {
@@ -48,18 +63,18 @@ public class AsciiUtility  {
 		   msmc.intoFolder(dir.getAbsolutePath());  
 	}
 	
-	 protected File mergeAsciiDocs(File dir) throws IOException {
+	 protected File mergeAsciiDocs(File dir) throws Exception {
 		Map <String, String>  map = m_paths.getMapOfFilesNames();
-		m_filesUtility.renameFiles(dir, map);
-		return m_filesUtility.mergeFileByType(dir, "*.adoc", m_paths.getNameOfAscii());
+		m_FilesUtils.renameFiles(dir, map);
+		return m_FilesUtils.mergeFileByType(dir, "*.adoc", m_paths.getNameOfAscii(), "\n<<<\n");
 	}
 
-	protected void convertAsciiToPdf(File dir, File inputFile) {
+	protected void convertAsciiToPdf(File dir, File inputFile) throws Exception {
 		File  outputFile = new File(dir, m_paths.getNameOfPDF());
 		convertAsciiToFormat(inputFile, outputFile, "pdf");
 	}
 	
-	protected void convertAsciiToHtml(File dir, File inputFile) {
+	protected void convertAsciiToHtml(File dir, File inputFile) throws Exception {
 		File outputFile = new File(dir, m_paths.getNameOfHtml());
 		convertAsciiToFormat(inputFile, outputFile, "html");
 	}

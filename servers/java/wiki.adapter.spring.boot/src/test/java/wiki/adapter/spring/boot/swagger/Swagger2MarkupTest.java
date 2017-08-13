@@ -2,6 +2,7 @@ package wiki.adapter.spring.boot.swagger;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +15,22 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import wiki.adapter.spring.boot.WikiAdapterMain;
-import wiki.adapter.spring.boot.swagger.output.AsciiUtility;
-import wiki.adapter.spring.boot.swagger.output.DocFilesPaths;
-import wiki.adapter.spring.boot.swagger.output.FilesUtility;
+import wiki.adapter.spring.boot.swagger.output.interfaces.AsciiUtilsWikiI;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes={WikiAdapterMain.class, SpringSwaggerConfig.class, EmbeddedWebApplicationContext.class})
 @AutoConfigureMockMvc
 public class Swagger2MarkupTest {
 
-
 	@Autowired
 	protected MockMvc mockMvc;
+	@Autowired
+	protected AsciiUtilsWikiI m_asciiUtilsWiki;
 
 	@Test
 	public void createApiDocument() throws Exception {
 		String swaggerJson =  getSwaggerJson();	
-		DocFilesPaths docFilesPaths = new DocFilesPaths();
-		FilesUtility  filesUtility = new FilesUtility();
-		AsciiUtility asciiUtility = new AsciiUtility(filesUtility, docFilesPaths);
-		asciiUtility.create(docFilesPaths.getOutPutDirTemp(), swaggerJson);
-		filesUtility.copyFilesToDir(docFilesPaths.getOutPutDirTemp(), docFilesPaths.getOutPutDirFinal());
+		m_asciiUtilsWiki.create(swaggerJson);
 	}
 	
 	protected String getSwaggerJson() throws Exception{

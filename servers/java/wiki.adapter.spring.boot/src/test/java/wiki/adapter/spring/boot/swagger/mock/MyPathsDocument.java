@@ -64,7 +64,6 @@ public class MyPathsDocument extends PathsDocument {
 	
 	public MyPathsDocument(Swagger2MarkupConfig swagger2MarkupConfig) {
 		super(swagger2MarkupConfig);
-		//PathsDocument inner = new PathsDocument (swagger2MarkupConfig);
 
         ResourceBundle labels = ResourceBundle.getBundle("lang/labels",
                 swagger2MarkupConfig.getOutputLanguage().toLocale());

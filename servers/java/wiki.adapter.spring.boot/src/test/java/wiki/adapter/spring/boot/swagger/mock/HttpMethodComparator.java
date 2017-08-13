@@ -8,7 +8,7 @@ import io.swagger.models.HttpMethod;
 
 public class HttpMethodComparator implements Comparator <HttpMethod> {
 	
-	protected Map <HttpMethod, Integer> score = null;// new Map
+	protected Map <HttpMethod, Integer> score = null;
 	
 	public HttpMethodComparator () {
 		score = new HashMap<HttpMethod, Integer>();
