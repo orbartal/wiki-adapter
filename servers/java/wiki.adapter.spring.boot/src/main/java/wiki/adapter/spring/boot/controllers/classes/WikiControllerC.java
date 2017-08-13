@@ -16,12 +16,14 @@ import wiki.adapter.spring.boot.model.interfaces.WikiREI;
 @RestController
 @RequestMapping(WikiControllerI.URL_REST_API+"/"+WikiControllerI.LAST_API_VERSION+"/"+WikiControllerI.Entities_NAME)
 @Api(value = WikiControllerI.Entities_NAME, description = "Rest for wikis (a wiki can contain sub wikis)")
-public class WikiControllerC implements WikiControllerI {
+public 	class WikiControllerC 
+		extends AbstractRestController<WikiREI> 
+		implements WikiControllerI  {
 	
 	@ApiOperation(value = "crud: get all wikis in the site")
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public Page<WikiREI> get(Pageable pageable) throws Exception {
-		return null;
+		return exeGetPage("GetAll", toMap ("pageable", pageable));
 	}
 
 	@ApiOperation(value = "crud: get wiki by id")
@@ -29,7 +31,7 @@ public class WikiControllerC implements WikiControllerI {
 	public WikiREI get(
 				@ApiParam(value = "The wiki id", required = true) @PathVariable("wikiId") String wikiId
 				) throws Exception {
-		return null;
+		return exeGetOne("GetById", toMap ("wikiId", wikiId));
 	}
 
 	@ApiOperation(value = "crud: create a new wiki")
@@ -37,6 +39,7 @@ public class WikiControllerC implements WikiControllerI {
 	public WikiREI create(
 				@ApiParam(value = "The wiki data", required = true) @RequestBody WikiREI data
 			) throws Exception {
+		exeSet("Create", toMap ("data", data));
 		return data;
 	}
 	
@@ -46,6 +49,7 @@ public class WikiControllerC implements WikiControllerI {
 				@ApiParam(value = "The wiki id", required = true) @PathVariable String wikiId, 
 				@ApiParam(value = "The wiki data", required = true) @RequestBody WikiREI data
 			) throws Exception {
+		exeSet("Update", toMap ("wikiId", wikiId, "data", data));
 		return data;
 	}
 
@@ -54,13 +58,15 @@ public class WikiControllerC implements WikiControllerI {
 	public void delete (
 				@ApiParam(value = "The wiki id", required = true) @PathVariable  String wikiId
 			) throws Exception
-	{}
+	{
+		exeSet("Delete", toMap ("wikiId", wikiId));
+	}
 	
 	@ApiOperation(value = "get sub wikis of a wiki")
 	@RequestMapping(method = RequestMethod.GET, value ="/{wikiId}/sub"+WikiControllerI.Entities_NAME, produces = "application/json")
 	public Page<WikiREI> get(
 			@ApiParam(value = "The wiki id", required = true) @PathVariable  String wikiId, 
 			Pageable pageable) throws Exception {
-		return null;
+		return exeGetPage ("sub", toMap ("wikiId", wikiId, "pageable", pageable));
 	}
 }

@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import wiki.adapter.spring.boot.controllers.GenericWithEntity;
 import wiki.adapter.spring.boot.controllers.interfaces.CrudController4I;
 
 public 	abstract class AbstractCrudController4C <T> 
-extends GenericWithEntity<T>
+extends AbstractRestController<T>
 implements CrudController4I<T> {
 	
-	@SuppressWarnings("unused")
 	@ApiOperation(value = "crud: get entities by page")
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public Page<T> get(
@@ -23,11 +21,9 @@ implements CrudController4I<T> {
 			@ApiParam(value = "The space id", required = true) @PathVariable("spaceId") String spaceId,
 			@ApiParam(value = "The article id", required = true) @PathVariable("articleId") String articleId, 
 			Pageable pageable) throws Exception {
-		String entityName = this.getEntityClass().toString();
-		return null;
+		return exeGetPage("GetAll", toMap ("wikiId", wikiId, "spaceId", spaceId, "articleId", articleId, "pageable", pageable));
 	}
 
-	@SuppressWarnings("unused")
 	@ApiOperation(value = "crud: get entity by id")
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces = "application/json")
 	public T get(
@@ -36,8 +32,7 @@ implements CrudController4I<T> {
 			@ApiParam(value = "The article id", required = true) @PathVariable("articleId") String articleId, 
 			@ApiParam(value = "The entity id", required = true) @PathVariable("id") String id
 				) throws Exception {
-		String entityName = this.getEntityClass().toString();
-		return null;
+		return exeGetOne("GetById", toMap ("wikiId", wikiId, "spaceId", spaceId, "articleId", articleId, "id", id));
 	}
 
 	@ApiOperation(value = "crud: create new entitiy")
@@ -48,7 +43,7 @@ implements CrudController4I<T> {
 			@ApiParam(value = "The article id", required = true) @PathVariable("articleId") String articleId, 
 			@ApiParam(value = "The entity data", required = true) @RequestBody T data
 			) throws Exception {
-		String entityName = this.getEntityClass().toString();
+		exeSet("Create", toMap ("wikiId", wikiId, "spaceId", spaceId, "articleId", articleId, "data", data));
 		return data;
 	}
 	
@@ -61,7 +56,7 @@ implements CrudController4I<T> {
 			@ApiParam(value = "The entity id", required = true) @PathVariable ("id")  String id, 
 			@ApiParam(value = "The entity data", required = true) @RequestBody T data
 			) throws Exception {
-		String entityName = this.getEntityClass().toString();
+		exeSet("Update", toMap ("wikiId", wikiId, "spaceId", spaceId, "articleId", articleId, "id", id, "data", data));
 		return data;
 	}
 
@@ -73,5 +68,7 @@ implements CrudController4I<T> {
 			@ApiParam(value = "The article id", required = true) @PathVariable("articleId") String articleId, 
 			@ApiParam(value = "The entity id", required = true) @PathVariable ("id")  String id
 			) throws Exception
-	{}
+	{
+		exeSet("Delete", toMap ("wikiId", wikiId, "spaceId", spaceId, "articleId", articleId, "id", id));
+	}
 }

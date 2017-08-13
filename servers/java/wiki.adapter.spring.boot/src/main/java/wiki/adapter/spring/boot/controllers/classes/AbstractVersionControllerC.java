@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import wiki.adapter.spring.boot.controllers.GenericWithEntity;
 import wiki.adapter.spring.boot.controllers.interfaces.versionControllerI;
 
 public 	abstract class AbstractVersionControllerC <T> 
-		extends GenericWithEntity<T>
+		extends AbstractRestController<T>
 		implements versionControllerI<T> {
 	
 
@@ -22,8 +21,7 @@ public 	abstract class AbstractVersionControllerC <T>
 			@ApiParam(value = "The space that contain the entity that the version belong to", required = true) @PathVariable("spaceId") String spaceId, 
 			@ApiParam(value = "The entity (article, file, ...) that the version belong to", required = true) @PathVariable("id") String id, 
 			Pageable pageable) throws Exception {
-		String entityName = this.getEntityClass().toString();
-		return null;
+		return exeGetPage ("History", toMap ("wikiId", wikiId, "spaceId", spaceId, "id", id, "pageable", pageable));
 	}
 
 	@ApiOperation(value = "versions: get version by id")
@@ -34,7 +32,6 @@ public 	abstract class AbstractVersionControllerC <T>
 			@ApiParam(value = "The entity (article, file, ...) that the version belong to", required = true) @PathVariable("id") String id, 
 			@ApiParam(value = "The version id", required = true) @PathVariable("versionId") String versionId
 			) throws Exception {
-		String entityName = this.getEntityClass().toString();
-		return null;
+		return exeGetOne("GetVersion", toMap ("wikiId", wikiId, "spaceId", spaceId, "id", id, "versionId", versionId));
 	}
 }
