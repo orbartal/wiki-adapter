@@ -30,16 +30,13 @@ public class AbstractRestController <T> {
 		}
 	}
 	public  <T> T exeGetOne (String action, Map <String, Object> args) {
-		return (T) exeGet(m_entityClass, action, args);
+		return (T) m_commandExecutor.run(m_entityClass, m_entityClass, action, args);
 	}
 	public  Page<T> exeGetPage (String action, Map <String, Object> args) {
-		return (Page<T>)exeGet(m_entityClass, action, args);
-	}
-	public  Object exeGet (Class cEntity, String action, Map <String, Object> args) {
-		return m_commandExecutor.run(cEntity, action, args);
+		return m_commandExecutor.run(Page.class, m_entityClass, action, args);
 	}
 	public  void exeSet (String action, Map <String, Object> args) {
-		m_commandExecutor.run(m_entityClass, action, args);
+		m_commandExecutor.run(m_entityClass, m_entityClass, action, args);
 	}
 	
 	//////////////////
