@@ -23,7 +23,7 @@ public class AbstractRestController <T> {
 	@PostConstruct
 	protected void getEntityClassOrDie (){
 		try {
-			m_entityClass =  m_reflectionUtilsWiki.getEntityClass(this);
+			m_entityClass =  m_reflectionUtilsWiki.getGenericClass(this);
 		}catch(Exception e){
 			//Kill the spring server if a controller is an invalid state!
 			throw new RuntimeException(e.getMessage());
